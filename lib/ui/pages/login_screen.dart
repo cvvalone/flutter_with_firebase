@@ -1,20 +1,38 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:testingproj/ui/components/my_elevatedbutton.dart';
 import 'package:testingproj/ui/components/my_textfield.dart';
+import 'package:testingproj/ui/pages/home_page.dart';
 import 'package:testingproj/ui/pages/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  LoginScreen({super.key});
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void signUserIn (context) async {
+    try{
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      navigateToHome(context);
+    }catch(e){
+      print(e.toString());
+    }
+  }
+
+  void navigateToHome(context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-
-    void signUserIn () {
-
-    }
 
     return Scaffold(
       body: Column(
@@ -22,8 +40,7 @@ class LoginScreen extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height:
-                    MediaQuery.of(context).size.height / 2.5, // Половина екрана
+                height: screenHeight / 2.5, // Половина екрана
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -101,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                     MyElevatedButtonRedirect(
                         buttonText: "Continue",
                         func: (){
-
+                          signUserIn(context);
                     },
                         color: Color.fromRGBO(124, 117, 52, 1.0)
                     ),

@@ -5,11 +5,11 @@ import 'package:testingproj/ui/components/my_textfield.dart';
 import 'package:testingproj/ui/pages/login_screen.dart';
 
 class SignupScreen extends StatelessWidget{
-  SignupScreen({super.key});
+  const SignupScreen({super.key});
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final mobNumberController = TextEditingController();
+  final emailController = "";
+  final passwordController = "";
+  final mobNumberController = "";
 
   @override
   Widget build(BuildContext context) {
