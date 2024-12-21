@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testingproj/ui/pages/login_screen.dart';
+import 'package:testingproj/ui/pages/signup_screen.dart';
 
 import '../components/my_elevatedbutton.dart';
 
@@ -30,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: const Color.fromRGBO(124, 117, 52, 1.0),
                       buttonText: "Log in",
                       func: (){
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       }
                   ),
                   SizedBox(height: 30), // Відстань між кнопками
@@ -38,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: const Color.fromRGBO(124, 117, 52, 1.0),
                       buttonText: "Sign up",
                       func: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
                       }
                   ),
                 ],
