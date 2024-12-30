@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:testingproj/ui/pages/welcome_screen.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   void signUserOut(context) {
     FirebaseAuth.instance.signOut();
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("LOGGED IN"),
+              Text("LOGGED IN as " + user.email!),
             ],
           ),
         ],
