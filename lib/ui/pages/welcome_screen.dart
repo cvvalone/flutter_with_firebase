@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: const Color.fromRGBO(124, 117, 52, 1.0),
                       buttonText: "Sign up",
                       func: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupScreen()));
                       }
                   ),
                 ],

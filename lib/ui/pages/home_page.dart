@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
 
     TextEditingController searchController = TextEditingController();
 
@@ -111,6 +112,27 @@ class HomePage extends StatelessWidget {
                     signUserOut(context);
                   },
                 ),
+=======
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: (){
+                signUserOut(context);
+              },
+              icon: Icon(Icons.logout)
+          )
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("LOGGED IN as " + user.email!),
+>>>>>>> 85e9ec4db93057a25e8be3351bec6ae7730178f1
             ],
             ),
         ),
