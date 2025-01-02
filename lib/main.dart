@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:testingproj/firebase_options.dart';
-import 'package:testingproj/ui/pages/welcome_screen.dart';
+import 'package:testingproj/ui/pages/init_page.dart';
 
 
 void main() async {
@@ -19,9 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: const InitializePage(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
+        scaffoldBackgroundColor: Colors.white,
+        primaryColor: Colors.white,
         useMaterial3: true,
       ),
     );

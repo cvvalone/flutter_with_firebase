@@ -7,73 +7,79 @@ import 'package:testingproj/ui/components/my_textfield.dart';
 import 'package:testingproj/ui/pages/home_page.dart';
 import 'package:testingproj/ui/pages/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
 
-  void signUserIn (context) async {
+  void signUserIn () async {
     try{
       await _auth.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-      navigateToHome(context);
-    }catch(e){
-      print(e.toString());
+      navigateToHome();
+    } on FirebaseAuthException catch(e){
+      showMessage(e.code);
     }
   }
 
-  void navigateToHome(context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+  void showMessage(String message){
+    showDialog(context: context, builder: (context){
+      return AlertDialog(
+        backgroundColor: const Color.fromARGB(255, 144, 150, 59),
+        title: Center(
+          child: 
+          Text(
+            message,
+            style: const TextStyle(color: Colors.white),
+            ),
+        ),
+      );
+    });
+  }
+
+  void navigateToHome() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              Container(
-                height: screenHeight / 2.5, // Половина екрана
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/loginBanner.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+      body: NestedScrollView(headerSliverBuilder: (BuildContext context, bool isBoxIsScrolled){
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: height/3,
+              floating: false,
+              leading: IconButton(onPressed: (){
+                Navigator.pop(context);
+              }, icon: const Icon(
+                Icons.arrow_back, 
+                color: Colors.white,
+                )
               ),
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  title: Text(
-                    "Back",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  titleSpacing: 0,
-                ),
+              pinned: true,
+              backgroundColor: const Color.fromARGB(255, 144, 150, 59),
+              flexibleSpace:  FlexibleSpaceBar(
+                background: Image.asset("assets/images/signupBanner.png",fit: BoxFit.cover,),
               ),
-            ],
-          ),
-          // Друга половина екрана
-          Expanded(
+            )
+          ];
+        }, body: Column(
+          children: [
+            Expanded(
             child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -101,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                       obscureText: true,
                       controller: passwordController,
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -118,20 +124,20 @@ class LoginScreen extends StatelessWidget {
                     MyElevatedButtonRedirect(
                         buttonText: "Continue",
                         func: (){
-                          signUserIn(context);
+                          signUserIn();
                     },
-                        color: Color.fromRGBO(124, 117, 52, 1.0)
+                        color: const Color.fromRGBO(124, 117, 52, 1.0)
                     ),
                     const SizedBox(height: 10,),
                     Row(
                       children:  [
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               thickness: 0.5,
                               color: Colors.grey,)
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text("or",
                             style: TextStyle(
                               fontFamily: 'Inter',
@@ -141,7 +147,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               thickness: 0.5,
                               color: Colors.grey,
@@ -161,14 +167,14 @@ class LoginScreen extends StatelessWidget {
                         RichText(
                             text: TextSpan(
                               text: "Don'have an account?, ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color.fromRGBO(0, 0, 0, .5),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                               ),
                                 children:[
                                   TextSpan(text: "Sign up",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
@@ -188,8 +194,10 @@ class LoginScreen extends StatelessWidget {
                 )
             ),
           ),
-        ],
-      ),
+          ]
+        )
+      )     
     );
   }
 }
+

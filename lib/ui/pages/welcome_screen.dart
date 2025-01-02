@@ -5,14 +5,16 @@ import 'package:testingproj/ui/pages/signup_screen.dart';
 import '../components/my_elevatedbutton.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(242, 253, 178, 1.0), // Встановлення фону
+      backgroundColor: const Color.fromRGBO(242, 253, 178, 1.0),
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Text(
                   'TapTapuli',
@@ -35,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       }
                   ),
-                  SizedBox(height: 30), // Відстань між кнопками
+                  const SizedBox(height: 30), // Відстань між кнопками
                   MyElevatedButtonRedirect(
                       color: const Color.fromRGBO(124, 117, 52, 1.0),
                       buttonText: "Sign up",
@@ -46,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 80), // Відстань від нижньої кнопки до низу екрану
+            const SizedBox(height: 80),
           ],
         ),
       ),
