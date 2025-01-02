@@ -8,24 +8,20 @@ import 'package:testingproj/ui/pages/home_page.dart';
 import 'package:testingproj/ui/pages/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-<<<<<<< HEAD
 
-=======
->>>>>>> 85e9ec4db93057a25e8be3351bec6ae7730178f1
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
 
-<<<<<<< HEAD
   void signUserIn () async {
     try{
       await _auth.signInWithEmailAndPassword(
@@ -53,72 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-=======
-  wrongEmailMessage(){
-    showDialog(context: context, builder: (context) {
-      return const AlertDialog(
-        backgroundColor: Color.fromRGBO(124, 117, 52, 1.0),
-        title: Center(
-          child: Text(
-            'Incorrect email',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ),
-      );
-    });
-  }
-
-  wrongPasswordMessage(){
-    showDialog(context: context, builder: (context) {
-      return const AlertDialog(
-        backgroundColor: Color.fromRGBO(124, 117, 52, 1.0),
-        title: Center(
-          child: Text(
-            'Incorrect password',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
-  void signUserIn () async {
-
-      // show loading circle
-
-      showDialog(context: context,
-          builder: (context){
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      });
-      try{
-        await _auth.signInWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-        navigateToHome();
-    }on FirebaseAuthException catch (e){
-        Navigator.pop(context);
-        //wrong email
-      if(e.code == "invalid-credential"){
-        wrongEmailMessage();
-      }
-      //wrong pass
-      else if(e.code == 'wrong-password'){
-        wrongPasswordMessage();
-      }
-    }
-  }
-
-
-
-  // void signInWithGoogle() async {
->>>>>>> 85e9ec4db93057a25e8be3351bec6ae7730178f1
   void navigateToHome() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
   }
@@ -140,35 +70,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
                 )
               ),
-<<<<<<< HEAD
               pinned: true,
               backgroundColor: const Color.fromARGB(255, 144, 150, 59),
               flexibleSpace:  FlexibleSpaceBar(
                 background: Image.asset("assets/images/signupBanner.png",fit: BoxFit.cover,),
-=======
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  leading: IconButton(
-                    icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  title: Text(
-                    "Back",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  titleSpacing: 0,
-                ),
->>>>>>> 85e9ec4db93057a25e8be3351bec6ae7730178f1
               ),
             )
           ];
