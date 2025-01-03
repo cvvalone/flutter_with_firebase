@@ -1,6 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:testingproj/ui/pages/all_categories_screen.dart';
 import 'package:testingproj/ui/pages/welcome_screen.dart';
 
@@ -114,22 +115,6 @@ class CatgoriesScrollWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class Review {
-  String title;
-  String author;
-  String text;
-  double starsCount;
-  int reviewsCount;
-
-  Review({
-    required this.title,
-    required this.author,
-    required this.text,
-    required this.starsCount,
-    required this.reviewsCount,
-  });
 }
 
 class ReviewsWidget extends StatefulWidget {
@@ -378,6 +363,109 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
   }
 }
 
+class ProductsWidget extends StatelessWidget {
+  ProductsWidget({super.key});
+
+  List<Product> products = [
+  Product(
+    name: "Purple Robe with a Bear",
+    company: "SoftGoods Co.",
+    shortDescription: "A cozy purple robe featuring a cute bear design.",
+    fullDescription: "This soft and comfortable purple robe is designed with a charming bear pattern. It's perfect for lounging around the house, and its plush fabric makes it incredibly warm and cozy. The robe comes in various sizes to fit any body type.",
+    inStock: true,
+    countInStock: 150,
+    price: 49.99,
+  ),
+  Product(
+    name: "Comfortable Leather Chair",
+    company: "FurniturePlus",
+    shortDescription: "A sleek and ergonomic leather chair for office or home use.",
+    fullDescription: "This comfortable leather chair is built for long hours of use. With its ergonomic design and soft leather, it provides both comfort and style. Ideal for an office or study space, it features adjustable height and armrests.",
+    inStock: true,
+    countInStock: 75,
+    price: 299.99,
+  ),
+  Product(
+    name: "Stylish Wooden Coffee Table",
+    company: "WoodCraft Designs",
+    shortDescription: "A modern, stylish wooden coffee table perfect for any living room.",
+    fullDescription: "This handcrafted wooden coffee table is both stylish and durable. Made from high-quality oak, its smooth finish and minimalist design make it a perfect addition to any living room. It's designed for easy maintenance and long-lasting use.",
+    inStock: true,
+    countInStock: 30,
+    price: 199.99,
+  ),
+  Product(
+    name: "Cozy Fleece Blanket",
+    company: "SnuggleUp",
+    shortDescription: "An ultra-soft fleece blanket to keep you warm during cold nights.",
+    fullDescription: "This fleece blanket is soft, warm, and perfect for chilly nights. It comes in a variety of colors, and its lightweight material makes it easy to carry around. Ideal for use at home or while traveling, this blanket is sure to keep you cozy.",
+    inStock: false,
+    countInStock: 0,
+    price: 29.99,
+  ),
+  Product(
+    name: "Compact Coffee Maker",
+    company: "BrewMaster",
+    shortDescription: "A compact and efficient coffee maker for quick, delicious coffee.",
+    fullDescription: "Brew your perfect cup of coffee every morning with this compact coffee maker. Its sleek design allows it to fit into small spaces, while the powerful brewing system ensures a strong, flavorful cup of coffee every time.",
+    inStock: true,
+    countInStock: 120,
+    price: 79.99,
+  ),
+  Product(
+    name: "Modern Wall Clock",
+    company: "TimeCraft",
+    shortDescription: "A minimalist, modern wall clock with a quiet movement.",
+    fullDescription: "This modern wall clock features a clean, minimalist design. The silent movement ensures that there’s no ticking sound, making it ideal for any living or working space. Its simple elegance adds to the beauty of your home decor.",
+    inStock: true,
+    countInStock: 50,
+    price: 49.99,
+  ),
+  Product(
+    name: "Eco-Friendly Bamboo Toothbrush",
+    company: "GreenBrush",
+    shortDescription: "A sustainable bamboo toothbrush for eco-conscious individuals.",
+    fullDescription: "This eco-friendly bamboo toothbrush is made with natural bamboo and soft bristles that are gentle on your gums. It's an environmentally friendly alternative to plastic toothbrushes and comes in biodegradable packaging.",
+    inStock: true,
+    countInStock: 200,
+    price: 7.99,
+  ),
+  Product(
+    name: "Lightweight Travel Backpack",
+    company: "NomadGear",
+    shortDescription: "A lightweight and durable backpack designed for travelers.",
+    fullDescription: "This travel backpack is lightweight yet durable, designed to withstand the rigors of travel. It features multiple compartments, including a laptop sleeve and a water-resistant exterior. Perfect for both short trips and extended travel.",
+    inStock: true,
+    countInStock: 80,
+    price: 89.99,
+  ),
+  Product(
+    name: "Scented Candle Set",
+    company: "AromaHome",
+    shortDescription: "A set of 3 beautifully scented candles for a relaxing atmosphere.",
+    fullDescription: "This scented candle set includes three calming fragrances: lavender, vanilla, and jasmine. Each candle is made from natural soy wax and is designed to burn cleanly, providing a relaxing and aromatic experience. Great for gifting or enhancing your home ambiance.",
+    inStock: true,
+    countInStock: 50,
+    price: 29.99,
+  ),
+  Product(
+    name: "Water-Resistant Phone Case",
+    company: "SafeGuard",
+    shortDescription: "A durable and water-resistant phone case for your smartphone.",
+    fullDescription: "Protect your smartphone with this high-quality, water-resistant phone case. It provides full protection against water, dust, and shocks, ensuring that your device stays safe in all conditions. Available in multiple colors to suit your style.",
+    inStock: true,
+    countInStock: 100,
+    price: 19.99,
+  ),
+];
+
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 class HomePage extends StatefulWidget {
   HomePage({super.key});
 
@@ -483,6 +571,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
+                    ProductsWidget(),
                   ],
                 ),
               ),
