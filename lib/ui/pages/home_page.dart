@@ -3,9 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:testingproj/models/product.dart';
 import 'package:testingproj/models/review.dart';
-
+import 'package:testingproj/ui/components/bottom_nav_bar.dart';
+import 'package:testingproj/ui/components/voice_search_field.dart';
 import 'package:testingproj/ui/pages/all_categories_screen.dart';
-import 'package:testingproj/ui/pages/welcome_screen.dart';
+
 
 class AvatarNicknameWidget extends StatelessWidget {
   const AvatarNicknameWidget({super.key});
@@ -31,39 +32,6 @@ class AvatarNicknameWidget extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class SearchTextFieldWidget extends StatelessWidget {
-  SearchTextFieldWidget({super.key});
-
-  TextEditingController searchController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: searchController,
-      obscureText: false,
-      decoration: const InputDecoration(
-        filled: true,
-        fillColor: Color.fromRGBO(247, 247, 247, 1),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        prefixIcon: Icon(Icons.search),
-        prefixIconColor: Color.fromRGBO(124, 124, 124, 1),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Color.fromRGBO(247, 247, 247, 1),
-        )),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Color.fromRGBO(230, 230, 230, 1),
-        )),
-        hintText: "Search",
-        contentPadding: EdgeInsets.all(15),
-      ),
     );
   }
 }
@@ -471,16 +439,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
 
-  void signUserOut(context) {
-    FirebaseAuth.instance.signOut();
-    navigateToHome(context);
-  }
-
-  void navigateToHome(context) {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()));
-  }
-
   List<Product> products = const [
     Product(
       name: "Purple Robe with a Bear",
@@ -693,41 +651,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.home_outlined,
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.category_outlined),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.shopping_cart_outlined),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.message_outlined),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Icons.manage_accounts),
-                onPressed: () {
-                  signUserOut(context);
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 }
